@@ -26,7 +26,7 @@ public class StartProgram {
         do {
             numberString = readFromConsole();
             number = checkInstance(numberString);
-            if (number != 1 && number != 2) {
+            if (number != 1 && number != 2 && number!=3 && number != 4) {
                 System.out.println("Incorrect number!");
             } else {
                 switch (number) {
@@ -44,7 +44,7 @@ public class StartProgram {
                         break;
                 }
             }
-        } while (number != 1 && number != 2);
+        } while (number != 1 && number != 2 && number!=3 && number != 4);
 
         System.out.println("-----------------------------------------------\n");
 
