@@ -6,7 +6,7 @@ import java.nio.file.Path;
 
 public class ArchiveImpl {
 
-    public int makeZIP(Path src, String dateString, int instance) {
+    public int makeZIP(Path src, String dateString, int instance) throws Exception {
         try {
             FileVisitor fileVisitor = new FileVisitor(dateString, instance);
             Files.walkFileTree(src, fileVisitor);
