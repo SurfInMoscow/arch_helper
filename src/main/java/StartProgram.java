@@ -26,7 +26,7 @@ public class StartProgram {
         do {
             numberString = readFromConsole();
             number = checkInstance(numberString);
-            if (number != 1 && number != 2 && number!=3 && number != 4) {
+            if (number != 1 && number != 2 && number != 3 && number != 4) {
                 System.out.println("Incorrect number!");
             } else {
                 switch (number) {
@@ -44,7 +44,7 @@ public class StartProgram {
                         break;
                 }
             }
-        } while (number != 1 && number != 2 && number!=3 && number != 4);
+        } while (number != 1 && number != 2 && number != 3 && number != 4);
 
         System.out.println("-----------------------------------------------\n");
 
@@ -62,28 +62,29 @@ public class StartProgram {
         System.out.print("Proccessing...");
 
         ArchiveImpl impl = new ArchiveImpl();
+        int count = 0;
         switch (number) {
             case 1:
-                impl.makeZIP(Paths.get(AMHLIVE1));
-                System.out.print("Done!\n");
+                count = impl.makeZIP(Paths.get(AMHLIVE1), dateString, 1);
+                System.out.print("Done - " + count + " files!\n");
                 System.out.println("-----------------------------------------------\n");
                 decisionToDelete(Paths.get(AMHLIVE1), impl);
                 break;
             case 2:
-                impl.makeZIP(Paths.get(AMHLIVE2));
-                System.out.print("Done!\n");
+                count = impl.makeZIP(Paths.get(AMHLIVE2), dateString, 2);
+                System.out.print("Done - " + count + " files!\n");
                 System.out.println("-----------------------------------------------\n");
                 decisionToDelete(Paths.get(AMHLIVE2), impl);
                 break;
             case 3:
-                impl.makeZIP(Paths.get(AMHLIVE1_PP));
-                System.out.print("Done!\n");
+                count = impl.makeZIP(Paths.get(AMHLIVE1_PP), dateString, 3);
+                System.out.print("Done - " + count + " files!\n");
                 System.out.println("-----------------------------------------------\n");
                 decisionToDelete(Paths.get(AMHLIVE1_PP), impl);
                 break;
             case 4:
-                impl.makeZIP(Paths.get(AMHLIVE2_PP));
-                System.out.print("Done!\n");
+                count = impl.makeZIP(Paths.get(AMHLIVE2_PP), dateString, 4);
+                System.out.print("Done - " + count + " files!\n");
                 System.out.println("-----------------------------------------------\n");
                 decisionToDelete(Paths.get(AMHLIVE2_PP), impl);
                 break;

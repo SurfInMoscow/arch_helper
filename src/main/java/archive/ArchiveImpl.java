@@ -6,12 +6,15 @@ import java.nio.file.Path;
 
 public class ArchiveImpl {
 
-    public void makeZIP(Path src) {
+    public int makeZIP(Path src, String dateString, int instance) {
         try {
-            Files.walkFileTree(src, new FileVisitor());
+            FileVisitor fileVisitor = new FileVisitor(dateString, instance);
+            Files.walkFileTree(src, fileVisitor);
+            return fileVisitor.getCount();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return 0;
     }
 
     public void cleanUp(Path src) {
@@ -21,4 +24,5 @@ public class ArchiveImpl {
             e.printStackTrace();
         }
     }
+
 }
