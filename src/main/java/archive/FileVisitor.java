@@ -1,12 +1,9 @@
 package archive;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.FileVisitResult;
-import java.nio.file.Path;
-import java.nio.file.SimpleFileVisitor;
+import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
@@ -19,25 +16,46 @@ public class FileVisitor extends SimpleFileVisitor<Path> {
     private ZipOutputStream zout;
     private int count = 0;
 
-    public FileVisitor(String dateString, int instance) throws FileNotFoundException {
+    public FileVisitor(String dateString, int instance) throws Exception {
         String[] strings = dateString.split("/");
         FileOutputStream fos;
+        String pathZIP;
         switch (instance) {
             case 1:
-                fos = new FileOutputStream(AMHLIVE1_ZIP + "/" + strings[2] + strings[1] + strings[0] + "_1" + ".zip");
-                this.zout = new ZipOutputStream(fos);
+                pathZIP = AMHLIVE1_ZIP + "/" + strings[2] + strings[1] + strings[0] + "_1" + ".zip";
+                if (!Files.exists(Paths.get(pathZIP))) {
+                    fos = new FileOutputStream(pathZIP);
+                    this.zout = new ZipOutputStream(fos);
+                } else {
+                    throw new IllegalStateException("Archive is already created! Be careful while input date.");
+                }
                 break;
             case 2:
-                fos = new FileOutputStream(AMHLIVE2_ZIP + "/" + strings[2] + strings[1] + strings[0] + "_2" + ".zip");
-                this.zout = new ZipOutputStream(fos);
+                pathZIP = AMHLIVE2_ZIP + "/" + strings[2] + strings[1] + strings[0] + "_2" + ".zip";
+                if (!Files.exists(Paths.get(pathZIP))) {
+                    fos = new FileOutputStream(pathZIP);
+                    this.zout = new ZipOutputStream(fos);
+                } else {
+                    throw new IllegalStateException("Archive is already created! Be careful while input date.");
+                }
                 break;
             case 3:
-                fos = new FileOutputStream(AMHLIVE1_PP_ZIP + "/" + strings[2] + strings[1] + strings[0] + "_1_PP" + ".zip");
-                this.zout = new ZipOutputStream(fos);
+                pathZIP = AMHLIVE1_PP_ZIP + "/" + strings[2] + strings[1] + strings[0] + "_1_PP" + ".zip";
+                if (!Files.exists(Paths.get(pathZIP))) {
+                    fos = new FileOutputStream(pathZIP);
+                    this.zout = new ZipOutputStream(fos);
+                } else {
+                    throw new IllegalStateException("Archive is already created! Be careful while input date.");
+                }
                 break;
             case 4:
-                fos = new FileOutputStream(AMHLIVE2_PP_ZIP + "/" + strings[2] + strings[1] + strings[0] + "_2_PP" + ".zip");
-                this.zout = new ZipOutputStream(fos);
+                pathZIP = AMHLIVE2_PP_ZIP + "/" + strings[2] + strings[1] + strings[0] + "_2_PP" + ".zip";
+                if (!Files.exists(Paths.get(pathZIP))) {
+                    fos = new FileOutputStream(pathZIP);
+                    this.zout = new ZipOutputStream(fos);
+                } else {
+                    throw new IllegalStateException("Archive is already created! Be careful while input date.");
+                }
                 break;
         }
     }
