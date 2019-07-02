@@ -62,33 +62,27 @@ public class StartProgram {
         System.out.print("Proccessing...");
 
         ArchiveImpl impl = new ArchiveImpl();
-        int count = 0;
         switch (number) {
             case 1:
-                count = impl.makeZIP(Paths.get(AMHLIVE1), dateString, 1);
-                System.out.print("Done - " + count + " files!\n");
-                System.out.println("-----------------------------------------------\n");
-                decisionToDelete(Paths.get(AMHLIVE1), impl);
+                proccessZIP(impl, AMHLIVE1, dateString, 1);
                 break;
             case 2:
-                count = impl.makeZIP(Paths.get(AMHLIVE2), dateString, 2);
-                System.out.print("Done - " + count + " files!\n");
-                System.out.println("-----------------------------------------------\n");
-                decisionToDelete(Paths.get(AMHLIVE2), impl);
+                proccessZIP(impl, AMHLIVE2, dateString, 2);
                 break;
             case 3:
-                count = impl.makeZIP(Paths.get(AMHLIVE1_PP), dateString, 3);
-                System.out.print("Done - " + count + " files!\n");
-                System.out.println("-----------------------------------------------\n");
-                decisionToDelete(Paths.get(AMHLIVE1_PP), impl);
+                proccessZIP(impl, AMHLIVE1_PP, dateString, 3);
                 break;
             case 4:
-                count = impl.makeZIP(Paths.get(AMHLIVE2_PP), dateString, 4);
-                System.out.print("Done - " + count + " files!\n");
-                System.out.println("-----------------------------------------------\n");
-                decisionToDelete(Paths.get(AMHLIVE2_PP), impl);
+                proccessZIP(impl, AMHLIVE2_PP, dateString, 4);
                 break;
         }
+    }
+
+    private static void proccessZIP(ArchiveImpl impl, String pathStr, String dateString, int instance) throws Exception {
+        int count = impl.makeZIP(Paths.get(pathStr), dateString, instance);
+        System.out.print("Done - " + count + " files!\n");
+        System.out.println("-----------------------------------------------\n");
+        decisionToDelete(Paths.get(pathStr), impl);
     }
 
     private static void decisionToDelete(Path src, ArchiveImpl impl) {

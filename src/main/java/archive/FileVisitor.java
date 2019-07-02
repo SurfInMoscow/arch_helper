@@ -13,49 +13,29 @@ import static utils.LookupCreation.lookupCreationDate;
 import static utils.WorkingData.*;
 
 public class FileVisitor extends SimpleFileVisitor<Path> {
+    private FileOutputStream fos = null;
     private ZipOutputStream zout;
     private int count = 0;
 
     public FileVisitor(String dateString, int instance) throws Exception {
         String[] strings = dateString.split("/");
-        FileOutputStream fos;
         String pathZIP;
         switch (instance) {
             case 1:
                 pathZIP = AMHLIVE1_ZIP + "/" + strings[2] + strings[1] + strings[0] + "_1" + ".zip";
-                if (!Files.exists(Paths.get(pathZIP))) {
-                    fos = new FileOutputStream(pathZIP);
-                    this.zout = new ZipOutputStream(fos);
-                } else {
-                    throw new IllegalStateException("Archive is already created! Be careful while input date.");
-                }
+                createZipOutputStream(pathZIP);
                 break;
             case 2:
                 pathZIP = AMHLIVE2_ZIP + "/" + strings[2] + strings[1] + strings[0] + "_2" + ".zip";
-                if (!Files.exists(Paths.get(pathZIP))) {
-                    fos = new FileOutputStream(pathZIP);
-                    this.zout = new ZipOutputStream(fos);
-                } else {
-                    throw new IllegalStateException("Archive is already created! Be careful while input date.");
-                }
+                createZipOutputStream(pathZIP);
                 break;
             case 3:
                 pathZIP = AMHLIVE1_PP_ZIP + "/" + strings[2] + strings[1] + strings[0] + "_1_PP" + ".zip";
-                if (!Files.exists(Paths.get(pathZIP))) {
-                    fos = new FileOutputStream(pathZIP);
-                    this.zout = new ZipOutputStream(fos);
-                } else {
-                    throw new IllegalStateException("Archive is already created! Be careful while input date.");
-                }
+                createZipOutputStream(pathZIP);
                 break;
             case 4:
                 pathZIP = AMHLIVE2_PP_ZIP + "/" + strings[2] + strings[1] + strings[0] + "_2_PP" + ".zip";
-                if (!Files.exists(Paths.get(pathZIP))) {
-                    fos = new FileOutputStream(pathZIP);
-                    this.zout = new ZipOutputStream(fos);
-                } else {
-                    throw new IllegalStateException("Archive is already created! Be careful while input date.");
-                }
+                createZipOutputStream(pathZIP);
                 break;
         }
     }
@@ -82,7 +62,17 @@ public class FileVisitor extends SimpleFileVisitor<Path> {
     @Override
     public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
         zout.close();
+        fos.close();
         return CONTINUE;
+    }
+
+    private void createZipOutputStream(String pathZIP) throws Exception {
+        if (!Files.exists(Paths.get(pathZIP))) {
+            fos = new FileOutputStream(pathZIP);
+            this.zout = new ZipOutputStream(fos);
+        } else {
+            throw new IllegalStateException("Archive is already created! Be careful while input date.");
+        }
     }
 
     public int getCount() {
