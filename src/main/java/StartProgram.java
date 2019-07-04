@@ -1,4 +1,6 @@
 import archive.ArchiveImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import utils.WorkingData;
 
 import java.nio.file.Path;
@@ -11,6 +13,7 @@ import static utils.RegexDate.parseDate;
 import static utils.WorkingData.*;
 
 public class StartProgram {
+    private static final Logger logger = LoggerFactory.getLogger(StartProgram.class);
 
     public static void main(String[] args) throws Exception {
 
@@ -27,19 +30,24 @@ public class StartProgram {
             numberString = readFromConsole();
             number = checkInstance(numberString);
             if (number != 1 && number != 2 && number != 3 && number != 4) {
+                logger.warn("number {} - incorrect", number);
                 System.out.println("Incorrect number!");
             } else {
                 switch (number) {
                     case 1:
+                        logger.info("number {} - correct", number);
                         System.out.println("Correct! You chose - amhlive1.\n");
                         break;
                     case 2:
+                        logger.info("number {} - correct", number);
                         System.out.println("Correct! You chose - amhlive2.\n");
                         break;
                     case 3:
+                        logger.info("number {} - correct", number);
                         System.out.println("Correct! You chose - amhlive1_pp.\n");
                         break;
                     case 4:
+                        logger.info("number {} - correct", number);
                         System.out.println("Correct! You chose - amhlive2_pp.\n");
                         break;
                 }
@@ -56,7 +64,7 @@ public class StartProgram {
         System.out.println(dateString + " - succeed! Date is correct.\n");
 
         WorkingData.inputDate = parseDate(dateString);
-
+        logger.info("date {} - correct", dateString);
         System.out.println("-----------------------------------------------\n");
 
         System.out.print("Proccessing...");
@@ -79,7 +87,9 @@ public class StartProgram {
     }
 
     private static void proccessZIP(ArchiveImpl impl, String pathStr, String dateString, int instance) throws Exception {
+        logger.info("start proccessZIP for {}", pathStr);
         int count = impl.makeZIP(Paths.get(pathStr), dateString, instance);
+        logger.info("finish proccessZIP for {} - {} files!", pathStr, count);
         System.out.print("Done - " + count + " files!\n");
         System.out.println("-----------------------------------------------\n");
         decisionToDelete(Paths.get(pathStr), impl);
@@ -93,11 +103,13 @@ public class StartProgram {
         } while (!decString.equals("y") && !decString.equals("n"));
         switch (decString) {
             case "y":
+                logger.info("decision to delete - {}", decString);
                 impl.cleanUp(src);
                 System.out.print("Done!\n");
                 System.out.println("Exit program.");
                 break;
             case "n":
+                logger.info("decision to delete - {}", decString);
                 System.out.println("Exit program.");
                 break;
         }
