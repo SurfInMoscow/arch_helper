@@ -6,10 +6,12 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.Objects;
 
 public class LookupCreation {
 
     public static boolean lookupCreationDate(BasicFileAttributes attrs) {
+        Objects.requireNonNull(attrs);
         FileTime fileTime = attrs.creationTime();
         long date = fileTime.toMillis();
         Instant instant = Instant.ofEpochMilli(date);
