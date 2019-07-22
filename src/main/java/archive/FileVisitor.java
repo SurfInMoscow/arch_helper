@@ -29,16 +29,8 @@ public class FileVisitor extends SimpleFileVisitor<Path> {
                 pathZIP = AMHLIVE1_ZIP + "/" + strings[2] + strings[1] + strings[0] + "_1" + ".zip";
                 createZipOutputStream(pathZIP);
                 break;
-            case 2:
-                pathZIP = AMHLIVE2_ZIP + "/" + strings[2] + strings[1] + strings[0] + "_2" + ".zip";
-                createZipOutputStream(pathZIP);
-                break;
             case 3:
                 pathZIP = AMHLIVE1_PP_ZIP + "/" + strings[2] + strings[1] + strings[0] + "_1_PP" + ".zip";
-                createZipOutputStream(pathZIP);
-                break;
-            case 4:
-                pathZIP = AMHLIVE2_PP_ZIP + "/" + strings[2] + strings[1] + strings[0] + "_2_PP" + ".zip";
                 createZipOutputStream(pathZIP);
                 break;
         }

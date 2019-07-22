@@ -4,14 +4,10 @@ import java.time.LocalDate;
 
 public class WorkingData {
 
-    public static String AMHLIVE1 = "/ArchiveAMH/ArchAMH/archive_amhlive1";
-    public static String AMHLIVE2 = "/ArchiveAMH/ArchAMH/archive_amhlive2";
-    public static String AMHLIVE1_PP = "/ArchiveAMH/ArchAMH/archive_pp_amhlive1";
-    public static String AMHLIVE2_PP = "/ArchiveAMH/ArchAMH/archive_pp_amhlive2";
-    public static String AMHLIVE1_ZIP = "/ArchiveAMH/ArchAMH/ZIP1/amhlive1_zip";
-    public static String AMHLIVE2_ZIP = "/ArchiveAMH/ArchAMH/ZIP1/amhlive2_zip";
-    public static String AMHLIVE1_PP_ZIP = "/ArchiveAMH/ArchAMH/ZIP1/amhlive1_pp_zip";
-    public static String AMHLIVE2_PP_ZIP = "/ArchiveAMH/ArchAMH/ZIP1/amhlive2_pp_zip";
+    public static String AMHLIVE1 = "/Users/vorobyev/Library/Mobile Documents/com~apple~CloudDocs/AMH_materials/archAMH/src/test/resources/data";
+    public static String AMHLIVE1_PP = "/Users/vorobyev/Library/Mobile Documents/com~apple~CloudDocs/AMH_materials/archAMH/src/test/resources/data_pp";
+    public static String AMHLIVE1_ZIP = "/Users/vorobyev/Library/Mobile Documents/com~apple~CloudDocs/AMH_materials/archAMH/src/test/resources/zip";
+    public static String AMHLIVE1_PP_ZIP = "/Users/vorobyev/Library/Mobile Documents/com~apple~CloudDocs/AMH_materials/archAMH/src/test/resources/zip";
 
     public static LocalDate inputDate;
 

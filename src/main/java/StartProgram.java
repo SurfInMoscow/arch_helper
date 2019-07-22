@@ -6,55 +6,16 @@ import utils.WorkingData;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import static utils.ConsoleHelper.checkInstance;
 import static utils.ConsoleHelper.readFromConsole;
 import static utils.RegexDate.dateMatch;
 import static utils.RegexDate.parseDate;
-import static utils.WorkingData.*;
+import static utils.WorkingData.AMHLIVE1;
+import static utils.WorkingData.AMHLIVE1_PP;
 
 public class StartProgram {
     private static final Logger logger = LoggerFactory.getLogger(StartProgram.class);
 
     public static void main(String[] args) throws Exception {
-
-        System.out.println("Choose your instanse to archive:" + "\n" +
-                "1. amhlive1;" + "\n" +
-                "2. amhlive2;" + "\n" +
-                "3. amhlive1_pp;" + "\n" +
-                "4. amhlive2_pp;" + "\n" +
-                "Press 1-4 -> Enter...");
-
-        int number = 0;
-        String numberString = ""; //use it for working with input text from console.
-        do {
-            numberString = readFromConsole();
-            number = checkInstance(numberString);
-            if (number != 1 && number != 2 && number != 3 && number != 4) {
-                logger.warn("number {} - incorrect", number);
-                System.out.println("Incorrect number!");
-            } else {
-                switch (number) {
-                    case 1:
-                        logger.info("number {} - correct", number);
-                        System.out.println("Correct! You chose - amhlive1.\n");
-                        break;
-                    case 2:
-                        logger.info("number {} - correct", number);
-                        System.out.println("Correct! You chose - amhlive2.\n");
-                        break;
-                    case 3:
-                        logger.info("number {} - correct", number);
-                        System.out.println("Correct! You chose - amhlive1_pp.\n");
-                        break;
-                    case 4:
-                        logger.info("number {} - correct", number);
-                        System.out.println("Correct! You chose - amhlive2_pp.\n");
-                        break;
-                }
-            }
-        } while (number != 1 && number != 2 && number != 3 && number != 4);
-
-        System.out.println("-----------------------------------------------\n");
 
         System.out.println("Input data of archive in format dd/mm/yyyy:");
         String dateString = "";
@@ -70,20 +31,8 @@ public class StartProgram {
         System.out.print("Proccessing...");
 
         ArchiveImpl impl = new ArchiveImpl();
-        switch (number) {
-            case 1:
-                proccessZIP(impl, AMHLIVE1, dateString, 1);
-                break;
-            case 2:
-                proccessZIP(impl, AMHLIVE2, dateString, 2);
-                break;
-            case 3:
-                proccessZIP(impl, AMHLIVE1_PP, dateString, 3);
-                break;
-            case 4:
-                proccessZIP(impl, AMHLIVE2_PP, dateString, 4);
-                break;
-        }
+        proccessZIP(impl, AMHLIVE1, dateString, 1);
+        proccessZIP(impl, AMHLIVE1_PP, dateString, 3);
     }
 
     private static void proccessZIP(ArchiveImpl impl, String pathStr, String dateString, int instance) throws Exception {
