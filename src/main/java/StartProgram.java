@@ -99,7 +99,7 @@ public class StartProgram {
         System.out.println("Do you want to delete files from source? y/n");
         String decString = "";
         do {
-            decString = readFromConsole();
+            decString = readFromConsole().toLowerCase();
         } while (!decString.equals("y") && !decString.equals("n"));
         switch (decString) {
             case "y":
