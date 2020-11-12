@@ -19,7 +19,7 @@ public class ConsoleHelper {
             e.getMessage();
         }
         logger.info("input {} - string", text);
-        return text;
+        return text.toLowerCase();
     }
 
     public static int checkInstance(String str) {

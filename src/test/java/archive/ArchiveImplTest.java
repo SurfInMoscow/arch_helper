@@ -25,7 +25,7 @@ public class ArchiveImplTest {
         Files.createFile(Paths.get("src/test/resources/data/test1.txt"));
         Files.createFile(Paths.get("src/test/resources/data/test2.txt"));
         Files.createFile(Paths.get("src/test/resources/data/test3.txt"));
-        WorkingData data = new WorkingData();
+        WorkingData data = WorkingData.getWorkingData();
         Field amhlive1 = WorkingData.class.getDeclaredField("AMHLIVE1");
         amhlive1.setAccessible(true);
         amhlive1.set(data, "src/test/resources");
@@ -37,7 +37,8 @@ public class ArchiveImplTest {
     @Test
     public void makeZIP() throws Exception {
         ArchiveImpl impl = new ArchiveImpl();
-        Assert.assertEquals(3, impl.makeZIP(Paths.get("src/test/resources/data"), dateSetUp(), 1));
+        int result = impl.makeZIP(Paths.get("src/test/resources/data"), dateSetUp(), 1);
+        Assert.assertEquals(3, result);
     }
 
     @Test
@@ -51,7 +52,8 @@ public class ArchiveImplTest {
     private String dateSetUp() {
         LocalDate date = LocalDate.now();
         String dateStr = date.getDayOfMonth() + "/" + date.getMonthValue() + "/" + date.getYear();
-        WorkingData.inputDate = parseDate(dateStr);
+        WorkingData.getWorkingData().setInputDate(parseDate(dateStr));
+
         return dateStr;
     }
 }

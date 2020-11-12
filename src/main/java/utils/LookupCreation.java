@@ -8,6 +8,8 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Objects;
 
+import static utils.WorkingData.*;
+
 public class LookupCreation {
 
     public static boolean lookupCreationDate(BasicFileAttributes attrs) {
@@ -18,8 +20,8 @@ public class LookupCreation {
         LocalDateTime localDateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
         LocalDate fld = LocalDate.of(localDateTime.getYear(), localDateTime.getMonthValue(), localDateTime.getDayOfMonth());
 
-        return fld.getYear() == WorkingData.inputDate.getYear() && fld.getMonthValue() == WorkingData.inputDate.getMonthValue()
-                && fld.getDayOfMonth() == WorkingData.inputDate.getDayOfMonth();
+        return fld.getYear() == getWorkingData().inputDate().getYear() && fld.getMonthValue() == getWorkingData().inputDate().getMonthValue()
+                && fld.getDayOfMonth() == getWorkingData().inputDate().getDayOfMonth();
     }
 
 }

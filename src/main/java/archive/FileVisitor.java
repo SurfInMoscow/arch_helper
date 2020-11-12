@@ -17,7 +17,7 @@ import java.util.zip.ZipOutputStream;
 import static java.nio.file.FileVisitResult.CONTINUE;
 import static java.nio.file.StandardOpenOption.READ;
 import static utils.LookupCreation.lookupCreationDate;
-import static utils.WorkingData.*;
+import static utils.WorkingData.getWorkingData;
 
 public class FileVisitor extends SimpleFileVisitor<Path> {
     private static final Logger logger = LoggerFactory.getLogger(FileVisitor.class);
@@ -32,19 +32,35 @@ public class FileVisitor extends SimpleFileVisitor<Path> {
         String pathZIP;
         switch (instance) {
             case 1:
-                pathZIP = AMHLIVE1_ZIP + "/" + strings[2] + strings[1] + strings[0] + "_1" + ".zip";
+                pathZIP = getWorkingData().AMHLIVE1_ZIP() + "/" + strings[2] + strings[1] + strings[0] + "_1" + ".zip";
                 createZipOutputStream(pathZIP);
                 break;
             case 2:
-                pathZIP = AMHLIVE2_ZIP + "/" + strings[2] + strings[1] + strings[0] + "_2" + ".zip";
+                pathZIP = getWorkingData().AMHLIVE2_ZIP() + "/" + strings[2] + strings[1] + strings[0] + "_2" + ".zip";
                 createZipOutputStream(pathZIP);
                 break;
             case 3:
-                pathZIP = AMHLIVE1_PP_ZIP + "/" + strings[2] + strings[1] + strings[0] + "_1_PP" + ".zip";
+                pathZIP = getWorkingData().AMHLIVE1_PP_ZIP() + "/" + strings[2] + strings[1] + strings[0] + "_1_PP" + ".zip";
                 createZipOutputStream(pathZIP);
                 break;
             case 4:
-                pathZIP = AMHLIVE2_PP_ZIP + "/" + strings[2] + strings[1] + strings[0] + "_2_PP" + ".zip";
+                pathZIP = getWorkingData().AMHLIVE2_PP_ZIP() + "/" + strings[2] + strings[1] + strings[0] + "_2_PP" + ".zip";
+                createZipOutputStream(pathZIP);
+                break;
+            case 5:
+                pathZIP = getWorkingData().AMHLIVE1_GPI_ZIP() + "/" + strings[2] + strings[1] + strings[0] + "_gpi_1" + ".zip";
+                createZipOutputStream(pathZIP);
+                break;
+            case 6:
+                pathZIP = getWorkingData().AMHLIVE2_GPI_ZIP() + "/" + strings[2] + strings[1] + strings[0] + "_gpi_2" + ".zip";
+                createZipOutputStream(pathZIP);
+                break;
+            case 7:
+                pathZIP = getWorkingData().AMHLIVE1_GPI_PP_ZIP() + "/" + strings[2] + strings[1] + strings[0] + "_gpi_1_PP" + ".zip";
+                createZipOutputStream(pathZIP);
+                break;
+            case 8:
+                pathZIP = getWorkingData().AMHLIVE2_GPI_PP_ZIP() + "/" + strings[2] + strings[1] + strings[0] + "_gpi_2_PP" + ".zip";
                 createZipOutputStream(pathZIP);
                 break;
         }
